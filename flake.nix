@@ -1,26 +1,27 @@
 {
-    description = "bitcrshr's home manager configuration";
-    
-    inputs = {
-        nixpkgs.url = "nixpkgs/nixos-23.11";   
-        
-        home-manager = {
-            url = "github:nix-community/home-manager/release-23.11";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-    };
+  description = "bitcrshr's home manager configuration";
 
-    outputs = { nixpkgs, home-manager, ... }:
-        let
-            lib = nixpkgs.lib;
-            system = "aarch64-linux";
-            pkgs = import nixpkgs { inherit system; };
-        in {
-            homeConfigurations = {
-                chandler = home-manager.lib.homeManagerConfiguration {
-                    inherit pkgs;
-                    modules = [ ./home.nix ];
-                };
-            };
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
+  outputs = { nixpkgs, home-manager, ... }:
+    let
+      lib = nixpkgs.lib;
+      system = "aarch64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      homeConfigurations = {
+        chandler = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
         };
+      };
+    };
 }
