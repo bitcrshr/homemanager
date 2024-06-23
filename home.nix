@@ -5,6 +5,7 @@
             hello
             home-manager
             helix
+            gh
         ];
 
         username = "chandler";
