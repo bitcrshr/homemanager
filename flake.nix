@@ -10,14 +10,14 @@
         };
     };
 
-    outputs = { nixpkgs, home-manager, ... };
+    outputs = { nixpkgs, home-manager, ... }:
         let
             lib = nixpkgs.lib;
             system = "aarch64-linux";
             pkgs = import nixpkgs { inherit system; };
         in {
             homeConfigurations = {
-                bitcrshr-personal = home-manager.lib.homeManagerConfiguration {
+                chandler = home-manager.lib.homeManagerConfiguration {
                     inherit pkgs;
                     modules = [ ./home.nix ];
                 };
